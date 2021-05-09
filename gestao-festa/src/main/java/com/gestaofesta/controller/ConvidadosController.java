@@ -20,7 +20,6 @@ public class ConvidadosController {
 	@Autowired
 	private ConvidadoCrud convidadosRepository;
 	
-	
 	@GetMapping
 	public ModelAndView listar() {
 		ModelAndView modelAndView = new ModelAndView("ListaConvidados");
