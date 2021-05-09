@@ -14,10 +14,6 @@
 	<version>1.0.0-SNAPSHOT</version>
 	<name>gestao-festa</name>
 	<description>Demo project for Spring Boot</description>
-	<properties>
-		<java.version>11</java.version>
-
-	</properties>
 
 	<dependencies>
 		<dependency>
