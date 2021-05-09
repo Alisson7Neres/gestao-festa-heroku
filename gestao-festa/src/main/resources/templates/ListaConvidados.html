@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width" />
+<title>Lista de Convidados</title>
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+
+<!-- Seleciona o campo a ser imprimido -->
+<style>
+    #printable { display: none; }
+
+    @media print
+    {
+        #non-printable { display: none; }
+        #printable { display: block; }
+    }
+</style>
+</head>
+<body>
+	<div class="panel panel-default" style="margin: 10px">
+		<div class="panel-heading">
+			<h1 class="panel-title">Lista de convidados</h1>
+		</div>
+		</div>
+
+	<form class="form-inline" method="POST" style="margin: 20px 0;" 
+	th:object="${convidado}" th:action="@{/convidados}" id="non-printable">
+		
+		<div class="form-group" style="margin: 10px;">
+		
+		<span class="glyphicon glyphicon-user"></span>
+			<input id="nome" required
+			 type="text" class="form-control" placeholder="Nome" 
+			th:field="*{nome}"/> 
+			
+			<span class="glyphicon glyphicon-user"></span>
+				<span class="glyphicon glyphicon-user"></span>
+			<input id="quantidadeAcompanhantes"
+				type="number" class="form-control" placeholder="Acompanhantes" 
+				th:field="*{quantidadeAcompanhantes}"/>
+		</div>
+		
+		<br/><br/>
+		
+		<div class="form-group" style="margin: 10px;">
+				
+		<span class="glyphicon glyphicon-phone-alt"></span>
+			<input id="numero"
+		    type="text" class="form-control" placeholder="Telefone" 
+			th:field="*{numero}"/> 
+		
+		<span class="glyphicon glyphicon-phone" style="position: relative; left: 17px; "></span>
+			<input id="whatsapp" style="position: relative; left: 17px; "
+				type="text" class="form-control" placeholder="Whatsapp" 
+				th:field="*{whatsapp}"/>
+				
+		</div>
+	
+		<br/><br/>
+		
+		<div class="form-group" style="margin: 10px;">
+		
+			<input id="evento" 
+			type="date"
+			th:field="*{evento}" />
+		</div>
+		
+		<br/><br/>
+			<button type="submit" class="btn btn-primary" style="margin: 10px;">Adicionar</button>
+	</form>
+	
+
+<form method="post" id="formMostrar">
+		<div class="panel-body">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Nome</th>
+						<th>Acompanhantes</th>
+						<th>Telefone</th>
+						<th>Whatsapp</th>
+						<th>
+						Evento<br/>
+						(ano/mês/dia)
+						</th>
+						<th id="non-printable">Excluír</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="convidado : ${convidados}">
+						<td th:text="${convidado.nome}"></td>
+						<td th:text="${convidado.quantidadeAcompanhantes}"></td>
+						<td th:text="${convidado.numero}"></td>
+						<td th:text="${convidado.whatsapp}"></td>
+						<td th:text="${convidado.evento}"></td>
+						<td>
+						<a class="glyphicon glyphicon-trash"  th:href="@{/removerconvidado/{convidadoid}(convidadoid=${convidado.id})}"
+						id="non-printable"></a></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+</form>
+
+
+		<div style="margin: 10px;">
+	<input type="button" class="btn btn-primary" value="Imprimir relatório" onclick="imprimir();"
+	id="non-printable">
+	</div>
+
+	<script>
+	
+		function imprimir(form){
+
+				var conteudo = $("form[id*=formMostrar]");
+				
+				window.print();
+				
+		}
+		
+	</script>
+	
+	<script src="https://code.jquery.com/jquery-1.10.0.min.js"></script>
+	<script src="https://rawgit.com/RobinHerbots/Inputmask/3.x/dist/jquery.inputmask.bundle.js"></script>
+
+	<script>
+		$("input[id*='numero']").inputmask({
+			mask:['(99) 9999-9999']})
+	</script>
+	<script>
+				
+			$("input[id*='whatsapp']").inputmask({
+				mask:['(99) 9 9999-9999']})
+	</script>
+</body>
+</html>

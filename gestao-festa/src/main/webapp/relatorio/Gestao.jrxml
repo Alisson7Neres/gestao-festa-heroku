@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.8.0.final using JasperReports Library version 6.8.0-2ed8dfabb690ff337a5797129f2cd92902b0c87b  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Gestao" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8f60c102-f8cd-41ab-b07a-66fee92d1225">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DA_GestaoFesta"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value="Y29udmlkYWRvICwxNSwxNSxhOWQ3MTljYy0wMDZjLTQ4YzMtYTMzMy1mZTdiNjc0ODA0Yzg7&#xA;"/>
+	<queryString>
+		<![CDATA[SELECT convidado.nome,
+	convidado.quantidade_acompanhantes,
+	convidado.id
+FROM convidado]]>
+	</queryString>
+	<field name="id" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.label" value="id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="convidado"/>
+	</field>
+	<field name="nome" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="nome"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="convidado"/>
+	</field>
+	<field name="quantidade_acompanhantes" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="quantidade_acompanhantes"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="convidado"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="230" y="40" width="100" height="30" uuid="c3611b4b-7f85-43f4-a398-871e59f05aa4"/>
+				<textElement textAlignment="Center">
+					<font size="18"/>
+				</textElement>
+				<text><![CDATA[Convidados]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="52" splitType="Stretch">
+			<staticText>
+				<reportElement x="4" y="21" width="100" height="30" uuid="63278036-71a1-4c5f-9a7a-db7729ea1c64"/>
+				<text><![CDATA[Convidados]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="146" y="22" width="100" height="30" uuid="066b53ed-a5cf-4352-94c3-bd069b2f0132"/>
+				<text><![CDATA[Acompanhantes]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="50">
+			<textField>
+				<reportElement x="10" y="0" width="100" height="30" uuid="923479eb-fdcc-4ff5-8de7-ab8ad79cffe0"/>
+				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="160" y="0" width="100" height="30" uuid="524f24bb-5150-4299-9cad-9ff5c3080fca"/>
+				<textFieldExpression><![CDATA[$F{quantidade_acompanhantes}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+</jasperReport>
